@@ -1,3 +1,14 @@
 {
-    "python.linting.pylintEnabled": true
+    "python.linting.pylintEnabled": true,
+    "python.pythonPath": "/home/andresaguilar/anaconda3/envs/cc/bin/python",
+    "python.unitTest.unittestArgs": [
+        "-v",
+        "-s",
+        "./Tushar",
+        "-p",
+        "test_*.py"
+    ],
+    "python.unitTest.pyTestEnabled": false,
+    "python.unitTest.nosetestsEnabled": false,
+    "python.unitTest.unittestEnabled": true
 }
