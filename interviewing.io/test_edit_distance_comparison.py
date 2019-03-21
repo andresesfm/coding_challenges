@@ -1,6 +1,7 @@
 import unittest
 
 # Do strings match with up to k edits/deletes?
+#From Youtube: https://www.youtube.com/watch?v=wyu6VRmtCmE
 def equals_edit(s1,s2, k):
     l1 = len(s1)
     l2 = len(s2)
