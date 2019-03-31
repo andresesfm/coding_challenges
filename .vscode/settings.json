@@ -1,10 +1,10 @@
 {
     "python.linting.pylintEnabled": true,
-    "python.pythonPath": "/home/andres/anaconda3/envs/cc/bin/python",
+    "python.pythonPath": "/home/andresaguilar/anaconda3/envs/cc/bin/python",
     "python.unitTest.unittestArgs": [
         "-v",
         "-s",
-        "./Tushar",
+        "./interviewing.io",
         "-p",
         "test_*.py"
     ],
