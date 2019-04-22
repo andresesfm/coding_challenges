@@ -1,6 +1,8 @@
 import unittest
 from collections import Counter
-
+"""
+This challenge was proposed by Juan
+"""
 def sortO(s: str) -> str:
     c = Counter(s)
     b = sorted(c.items(), key=lambda kv: kv[1], reverse=True)
