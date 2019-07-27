@@ -10,7 +10,7 @@ def num_coins(cents: int) -> int:
         
     return coins
 
-print(num_coins(31))
+#print(num_coins(31))
 #first pass at dynamic programming answer general case
 def num_coins2(cents:int)-> int:
     vals = [25,10,1]
@@ -39,4 +39,24 @@ def num_coins2(cents:int)-> int:
         return m
     return helper(scounters,cents)
 
-print(num_coins2(31),'coins')
+#print(num_coins2(31),'coins')
+
+#third pass at dynamic programming answer general case: bottom up pass
+def num_coins3(cents:int)-> int:
+    vals = [25,10,1]
+    MAX_VAL = 1000000
+    coins = [0] * (cents+1)
+    for i in range(len(coins)):
+        m = MAX_VAL
+        for v in vals:
+            if i > v :
+                c = coins[i-v]
+                if c < m:
+                    m = c + 1
+            elif i == v:
+                m=1
+        coins[i] = m
+    print(coins)
+    return coins[cents]
+
+print(num_coins3(31),'coins')
