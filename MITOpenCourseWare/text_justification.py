@@ -44,6 +44,7 @@ def justify(i):
     return(nlbc)
 
 
-print(justify(0))
+#print(justify(0))
 # while(True):
 #print(parent_pointer)
+
