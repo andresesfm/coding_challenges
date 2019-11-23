@@ -21,6 +21,11 @@ class TreeNode:
       return s
 
 class Solution:
+    def __init__(self):
+        super().__init__()
+        self.memo = {}
+    def hash_array(self,arr:List[int]):
+        return '-'.join([str(i) for i in arr])
     def generateTrees(self, n: int) -> List[TreeNode]:
         return self.generateTreesH([i+1 for i in range(n)])
     def generateTreesH(self,arr:List[int]) -> List[TreeNode]:
@@ -40,11 +45,23 @@ class Solution:
             for i in range(n):
                 root = TreeNode(arr[i])
                 if i>0:
-                    left = self.generateTreesH(arr[:i])
+                    larr = arr[:i]
+                    hlarr = self.hash_array(larr)
+                    if hlarr in self.memo:
+                        left = self.memo[hlarr]
+                    else:
+                        left = self.generateTreesH(larr)
+                        self.memo[hlarr] = left
                 else:
                     left = []
                 if i+1 < n:
-                    right = self.generateTreesH(arr[i+1:])
+                    rarr = arr[i+1:]
+                    hrarr = self.hash_array(rarr)
+                    if hrarr in self.memo:
+                        right = self.memo[hrarr]
+                    else:
+                        right = self.generateTreesH(rarr)
+                        self.memo[hrarr] = right
                 else:
                     right = []
 
