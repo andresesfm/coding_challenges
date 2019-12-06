@@ -3,40 +3,37 @@ class ListNode:
     def __init__(self, x):
         self.val = x
         self.next = None
-#Not working
+
 class Solution:
     def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
-        bs = 0
-        nthp = curr = head
-        while True:
-            if not curr:
-                break
-            
-            if bs >= n+1:
-                nthp = nthp.next
-            bs+=1
-            curr = curr.next
-        if n == 1 and bs != 2:
-            return None
-        #nthp prev to nth
-        if nthp and nthp.next:
-            if not nthp.next.next and n>1:
-                head = head.next
+        last = 0
+        nh = head
+        while nh:
+            nh = nh.next
+            last +=1
+        count = 0
+        rh = head
+        if last-n ==0:
+            return head.next
+        while count < last-n-1:
+            rh = rh.next
+            count +=1
+        if rh:
+            if rh.next:
+                rh.next = rh.next.next
             else:
-                nthp.next = nthp.next.next
-        # if not nthp.next:
-        #    head = head.next
+                rh.next = None
         return head
 
 s = Solution()
 head = l = ListNode(1)
 l.next = ListNode(2)
-# l = l.next
-# l.next = ListNode(3)
-# l = l.next
-# l.next = ListNode(4)
-# l = l.next
-# l.next = ListNode(5)
+l = l.next
+l.next = ListNode(3)
+l = l.next
+l.next = ListNode(4)
+l = l.next
+l.next = ListNode(5)
 
 n = s.removeNthFromEnd(head,1)
 while n:
