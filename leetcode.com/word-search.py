@@ -10,24 +10,23 @@ class Solution:
                     return True
         return False
     def existR(self, board: List[List[str]], word: str, i:int,j:int,wi:int, visited:Set[Tuple]) -> bool:
-        if (i,j) in visited:
+        vkey = (i,j)
+        if vkey in visited:
             return False
+        else:
+            visited = set(visited)
+            visited.add(vkey)
         m =len(board)
         n = len(board[0])
         if word[wi] == board[i][j]:
             if wi == len(word)-1:
                 return True
             else:
-                for k in [-1,0,1]:
-                    for l in [-1,0,1]:
-                        if not (l==0 and k ==0):
-                            vkey = (i+k,j+k)
-                            if i+k < m and i+k >=0 and j+l< n and j+l >=0 and not (vkey in visited): 
-                                visited.add(vkey)
-                                res =self.existR(board,word,i+k,j+l,wi+1,visited)
-                                visited.remove(vkey)
-                                if res:
-                                    return True
+                for k,l in [[-1,0],[1,0],[0,-1],[0,1]]:
+                    if i+k < m and i+k >=0 and j+l< n and j+l >=0: 
+                        res =self.existR(board,word,i+k,j+l,wi+1,visited)
+                        if res:
+                            return True
         return False
 
 
@@ -42,7 +41,8 @@ if __name__ == "__main__":
     ['S','F','C','S'],
     ['A','D','E','E']
     ]
-    # print(s.exist(board,'ABCCED'))#True
-    # print(s.exist(board,'SEE'))#True
-    # print(s.exist(board,'ABCB'))#False
+    print(s.exist(board,'ABCCED'))#True
+    print(s.exist(board,'SEE'))#True
+    print(s.exist(board,'ABCB'))#False
     print(s.exist([["a","b"],["c","d"]],"acdb"))# true
+    print(s.exist([["a","b"],["c","d"]],"abcd"))#false
