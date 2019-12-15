@@ -6,29 +6,23 @@ class ListNode:
         self.val = x
         self.next = None
 
-from collections import Counter
 class Solution:
     def deleteDuplicates(self, head: ListNode) -> ListNode:
         if not head:
             return None
-
-        root = head
-        cnt = Counter()
-        while root:
-            cnt[root.val] +=1
-            root = root.next
-        root = head
-        root2 = root
-        while root:
-            if cnt[root.val]>1 and root == root2:
-                    root2 = root2.next
-                    root  = root.next
-            elif root.next and cnt[root.next.val]>1:
-                    root.next = root.next.next
-            else:
-                root  = root.next
-        return root2
+        head.next = self.firstDifferent(head.next,head.val)
+        return head
     
+    def firstDifferent(self,head:ListNode, val):
+        root = head
+        while root:
+            if root.val == val:
+                root = root.next
+            else:
+                break
+        if root:
+            root.next = self.firstDifferent(root.next,root.val)
+        return root
 
 def printm(M):
     for e in M:
