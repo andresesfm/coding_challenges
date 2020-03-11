@@ -13,6 +13,7 @@ def dflag():
     for i in range(N-2,-1,-1):
         if a[i] == last:
             a[i],a[li] = a[li],a[i]
+            li-=1
     print(a)
         
 #Expected all elements are grouped in place
